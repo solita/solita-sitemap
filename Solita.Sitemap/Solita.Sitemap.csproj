@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\SitemapUrlData.cs" />
+    <Compile Include="SitemapUrlData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\sitemap.designer.cs" />
-    <Compile Include="Schema\SitemapModelConverter.cs" />
+    <Compile Include="SitemapXmlSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Schema\sitemap.xsd">

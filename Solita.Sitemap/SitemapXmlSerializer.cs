@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Solita.Sitemap.Model;
+using Solita.Sitemap.Schema;
 
-namespace Solita.Sitemap.Schema
+namespace Solita.Sitemap
 {
-    public class SitemapModelConverter
+    public class SitemapXmlSerializer
     {
         public string Serialize(IEnumerable<SitemapUrlData> data)
         {
