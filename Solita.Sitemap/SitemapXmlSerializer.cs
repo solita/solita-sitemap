@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Solita.Sitemap.Schema;
 
@@ -57,6 +58,46 @@ namespace Solita.Sitemap
                     return tChangeFreq.never;   
                 default:
                     return tChangeFreq.always;
+            }
+        }
+
+
+        public List<SitemapUrlData> Deserialize(string xml)
+        {
+            var root = urlset.Deserialize(xml);
+            return root.url.Select(ToProductModel).ToList();
+        }
+
+        private SitemapUrlData ToProductModel(tUrl type)
+        {
+            var model = new SitemapUrlData();
+            model.Url = type.loc;
+            model.LastModified = type.lastmodSpecified ? type.lastmod : (DateTime?) null;
+            model.ChangeFrequency = type.changefreqSpecified ? ToChangeFreqModel(type.changefreq) : (ChangeFrequency?) null;
+            model.Priority = type.prioritySpecified ? type.priority : (decimal?) null;
+            return model;
+        }
+
+        private ChangeFrequency ToChangeFreqModel(tChangeFreq type)
+        {
+            switch (type)
+            {
+                case tChangeFreq.always:
+                    return ChangeFrequency.Always;
+                case tChangeFreq.hourly:
+                    return ChangeFrequency.Hourly;
+                case tChangeFreq.daily:
+                    return ChangeFrequency.Daily;
+                case tChangeFreq.weekly:
+                    return ChangeFrequency.Weekly;
+                case tChangeFreq.monthly:
+                    return ChangeFrequency.Monthly;
+                case tChangeFreq.yearly:
+                    return ChangeFrequency.Yearly;
+                case tChangeFreq.never:
+                    return ChangeFrequency.Never;
+                default:
+                    return ChangeFrequency.Always;
             }
         }
     }
