@@ -20,7 +20,9 @@ namespace Solita.Sitemap
             if (model.LastModified.HasValue)
             {
                 type.lastmodSpecified = true;
-                type.lastmod = model.LastModified.Value;
+                type.lastmod = (model.LastModified.Value.Kind == DateTimeKind.Unspecified)
+                                  ? DateTime.SpecifyKind(model.LastModified.Value, DateTimeKind.Local)
+                                  : model.LastModified.Value;
             }
 
             if (model.ChangeFrequency.HasValue)
