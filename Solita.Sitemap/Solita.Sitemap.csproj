@@ -54,6 +54,7 @@
     <None Include="Schema\sitemap.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Solita.Sitemap.nuspec" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

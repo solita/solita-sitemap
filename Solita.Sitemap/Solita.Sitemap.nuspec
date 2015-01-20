@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Solita.Sitemap</id>
+    <version>1.0</version>
+    <title>Solita.Sitemap</title>
+    <authors>Solita</authors>
+    <owners>Solita</owners>
+    <projectUrl>https://github.com/solita/Solita.Sitemap</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Simple and minimal sitemap serializer.</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>sitemap</tags>
+  </metadata>
+</package>
