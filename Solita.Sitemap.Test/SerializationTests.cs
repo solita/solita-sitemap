@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,7 +16,7 @@ namespace Solita.Sitemap.Test
         {
             var urls = GetReferenceData();
             var xml = XDocument.Parse(new SitemapXmlSerializer().Serialize(urls));
-			var expected = XDocument.Parse(GetReferenceXml());
+			var expected = GetReferenceXml();
 
             Assert.AreEqual(expected.ToString(), xml.ToString());
             Debug.Write(xml);
@@ -27,18 +26,18 @@ namespace Solita.Sitemap.Test
         public void Deserialize()
         {
             var xml = GetReferenceXml();
-            var urls = new SitemapXmlSerializer().Deserialize(xml);
+            var urls = new SitemapXmlSerializer().Deserialize(xml.ToString());
 
             foreach (var refUrl in GetReferenceData())
             {
-                Assert.IsTrue(urls.Contains(refUrl));
+                Assert.IsTrue(urls.Contains(refUrl), "Found URL " + refUrl);
             }
         }
 
 
-        private string GetReferenceXml()
+        private XDocument GetReferenceXml()
         {
-            return File.ReadAllText(Filename).Trim();
+            return XDocument.Load(Filename);
         }
 
         private List<SitemapUrlData> GetReferenceData()
