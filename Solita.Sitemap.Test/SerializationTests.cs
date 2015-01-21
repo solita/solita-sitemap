@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Solita.Sitemap.Test
@@ -15,9 +16,10 @@ namespace Solita.Sitemap.Test
         public void Serialize()
         {
             var urls = GetReferenceData();
-            var xml = new SitemapXmlSerializer().Serialize(urls);
+            var xml = XDocument.Parse(new SitemapXmlSerializer().Serialize(urls));
+			var expected = XDocument.Parse(GetReferenceXml());
 
-            Assert.AreEqual(xml, GetReferenceXml());
+            Assert.AreEqual(expected.ToString(), xml.ToString());
             Debug.Write(xml);
         }
 
