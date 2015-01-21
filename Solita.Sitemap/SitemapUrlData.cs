@@ -29,6 +29,11 @@ namespace Solita.Sitemap
         {
             return Url.GetHashCode();
         }
+
+	    public override string ToString()
+	    {
+		    return Url;
+	    }
     }
 
     public enum ChangeFrequency
